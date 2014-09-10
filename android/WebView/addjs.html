@@ -1,0 +1,31 @@
+<!-- Heavily copied from http://drops.wooyun.org/webview.html -->
+<html>
+<head>
+WebView addJavascriptInteface test.
+</head>
+<body>
+<p>
+addJavascriptInterface导出的可被利用的对象:
+</p>
+<script type="text/javascript">
+function check()
+{
+	var res = 0;
+	for (var obj in window) {
+		try {
+			if ("getClass" in window[obj]) {
+				try {
+					window[obj].getClass();
+					document.write('<span style="color:red">'+obj+'</span>');
+					document.write('<br />');
+				} catch (e) {
+				}
+			}
+		} catch (e) {
+		}
+	}
+}
+check();
+</script>
+</body>
+</html>

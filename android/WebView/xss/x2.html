@@ -1,0 +1,12 @@
+<script>
+window.onload = function()
+{
+    object = document.createElement("object");
+    object.data = "http://www.baidu.com";
+    document.body.appendChild(object);
+    object.onload = function() {
+        object.data = "javascript:alert(document.cookie)";
+        object.innerHTML = "foo";
+    }
+}
+</script>

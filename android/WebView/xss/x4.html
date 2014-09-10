@@ -1,0 +1,11 @@
+<body>
+<script>
+i = document.body.appendChild(document.createElement("iframe"));
+i.src = "http://www.mi.com";
+i.onload = function()
+{
+    document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)";
+    i.contentWindow.location = "";
+}
+</script>
+</body>
